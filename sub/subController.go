@@ -54,10 +54,7 @@ func (a *SUBController) initRouter(g *gin.RouterGroup) {
 
 func (a *SUBController) subs(c *gin.Context) {
 	subId := c.Param("subid")
-	host := c.GetHeader("X-Forwarded-Host")
-	if host == "" {
-		host = c.GetHeader("X-Real-IP")
-	}
+	host := c.GetHeader("X-Real-IP")
 	if host == "" {
 		var err error
 		host, _, err = net.SplitHostPort(c.Request.Host)
