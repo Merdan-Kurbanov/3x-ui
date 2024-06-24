@@ -64,10 +64,8 @@ func html(c *gin.Context, name string, title string, data gin.H) {
 		data = gin.H{}
 	}
 	data["title"] = title
-	host := c.GetHeader("X-Forwarded-Host")
-	if host == "" {
-		host = c.GetHeader("X-Real-IP")
-	}
+	host := c.GetHeader("X-Real-IP")
+	
 	if host == "" {
 		var err error
 		host, _, err = net.SplitHostPort(c.Request.Host)
